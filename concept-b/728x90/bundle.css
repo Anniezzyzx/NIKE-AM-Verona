@@ -1,0 +1,223 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+
+html {
+  font-size: 1em; }
+
+body {
+  font-size: 100%; }
+
+a img, :link img, :visited img {
+  border: 0; }
+
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+.alpha-0 {
+  opacity: 0; }
+
+.invisible {
+  visibility: hidden; }
+
+.none {
+  display: none; }
+
+.offstage {
+  position: absolute;
+  left: -4000px;
+  top: -4000px; }
+
+.transform-reset {
+  transform: none !important; }
+
+.anti-alias, .white-text-alias-mac {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.gpu {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  transform: translateZ(0); }
+
+@supports (-moz-appearance: meterbar) {
+  .gpu {
+    transform: translateZ(0) rotate(0.02deg); } }
+
+.center-trans {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); }
+
+.middle-trans {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); }
+
+.center-middle-trans {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); }
+
+.center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto; }
+
+.middle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto; }
+
+.center-middle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto; }
+
+#ad_content {
+  background: white;
+  cursor: pointer;
+  border: 1px solid black;
+  font-family: Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  position: absolute;
+  width: 728px;
+  height: 90px;
+  background: url("backup.jpg") -1px -1px no-repeat; }
+  #ad_content div, #ad_content svg {
+    position: absolute; }
+
+.backup {
+  background: url("backup.jpg") -1px -1px no-repeat;
+  background-size: 728px 90px;
+  border: 1px solid black;
+  cursor: pointer;
+  position: absolute;
+  width: 728px;
+  height: 90px; }
+
+#txt-01 {
+  left: 35px;
+  top: 7px; }
+
+#txt-02 {
+  left: 150px;
+  top: 6px; }
+
+#txt-03 {
+  left: 37px;
+  top: 23px; }
+
+#txt-04 {
+  left: 57px;
+  top: 22px; }
+
+#air {
+  top: 18px;
+  left: 64px; }
+
+#airmax90 {
+  top: 56px;
+  left: 37px; }
+
+#logo {
+  top: 40px;
+  left: 36px; }
+
+#cta {
+  width: 163px;
+  height: 40px;
+  top: 25px;
+  left: 498px; }
+  #cta #cta-bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: #000; }
+  #cta #cta-txt {
+    top: -1px; }
+
+#wraper {
+  right: 0px;
+  width: 300px;
+  height: 90px; }
+  #wraper #frame {
+    right: 0px;
+    width: 118px;
+    height: 200px;
+    background: url("frame.png");
+    background-repeat: repeat-y; }
+
+.first {
+  top: 0px;
+  right: 16px; }
+
+.second {
+  top: 0px;
+  right: 16px; }
+
+.third {
+  top: 21px;
+  left: 728px; }
+
+.sprite-jpg { background-image: url('sprite.jpg') }
+.sprite-jpg.bg {
+  width: 728px;
+  height: 90px;
+  background-position: 0px 0px;
+  background-size: 729px 186px; }
+.sprite-jpg.img-01 {
+  width: 83px;
+  height: 88px;
+  background-position: 0px -96px;
+  background-size: 729px 186px; }
+.sprite-jpg.img-02 {
+  width: 83px;
+  height: 88px;
+  background-position: -87px -96px;
+  background-size: 729px 186px; }
+.sprite-svg { background: url('sprite.svg') no-repeat; }
+.sprite-svg.air {
+  background-position: 0 78.68785097931791%;
+  width: 100.89px;
+  height: 46.99px; }
+.sprite-svg.airmax90 {
+  background-position: 0 0;
+  width: 129.37px;
+  height: 26.84px; }
+.sprite-svg.cta-txt {
+  background-position: 0 25.54001332191455%;
+  width: 126.43px;
+  height: 14.91px; }
+.sprite-svg.logo {
+  background-position: 92.62761659933896% 54.61545774313148%;
+  width: 21.08px;
+  height: 14.81px; }
+.sprite-svg.txt-01 {
+  background-position: 0 40.0287631831256%;
+  width: 109.84px;
+  height: 15.7px; }
+.sprite-svg.txt-02 {
+  background-position: 88.84290243043326% 69.00964568809093%;
+  width: 16.44px;
+  height: 15.29px; }
+.sprite-svg.txt-03 {
+  background-position: 97.1090089293608% 39.724072312083734%;
+  width: 16.89px;
+  height: 14.9px; }
+.sprite-svg.txt-04 {
+  background-position: 0 99.49509383633419%;
+  width: 35.11px;
+  height: 15.03px; }

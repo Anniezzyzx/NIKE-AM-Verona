@@ -1,0 +1,157 @@
+(function () {
+  'use strict';
+
+  // BannerUtils version 3.2.0
+  function getBrowser() {
+    // desktop browsers as of 2019-10-04
+    var browserslist = ['other', 'blink', 'chrome', 'safari', 'opera', 'ie', 'edge', 'firefox'];
+    var browser = 0;
+
+    if ('WebkitAppearance' in document.documentElement.style) {
+      browser = 1; // chrome/safari/opera/edge/firefox
+
+      if (/google/i.test(window.navigator.vendor)) browser = 2;
+      if (/apple/i.test(window.navigator.vendor)) browser = 3;
+      if (!!window.opr && !!window.opr.addons || !!window.opera || / OPR\//.test(window.navigator.userAgent)) browser = 4;
+    }
+
+    if (
+    /*@cc_on!@*/
+     !!document.documentMode) browser = 5; // ie 6-11
+
+    if (browser !== 5 && !!window.StyleMedia) browser = 6;
+    if (typeof InstallTrigger !== 'undefined' || 'MozAppearance' in document.documentElement.style) browser = 7;
+    return browserslist[browser];
+  }
+  var browser = getBrowser();
+  function es5() {
+    return parseInt('010', 10) === 10 && function () {
+      return !this;
+    }() && !!(Date && Date.prototype && Date.prototype.toISOString); // IE10, FF21, CH23, SF6, OP15, iOS7, AN4.4
+  }
+  var log = {
+    // https://bit.ly/32ZIpgo
+    traceOn: window.console.log.bind(window.console, '%s'),
+    traceOff: function traceOff() {},
+    trace: window.console.log.bind(window.console, '%s'),
+
+    set debug(bool) {
+      this._debug = bool;
+      bool ? this.trace = this.traceOn : this.trace = this.traceOff;
+    },
+
+    get debug() {
+      return this._debug;
+    }
+
+  };
+  function domIds(scope) {
+    if (scope === void 0) {
+      scope = document;
+    }
+
+    var all = scope.getElementsByTagName('*');
+    var haveIds = {};
+    var i = all.length;
+
+    while (i--) {
+      if (all[i].id) {
+        var safeId = all[i].id.replace(/-|:|\./g, '_');
+        haveIds[safeId] = all[i];
+      }
+    }
+
+    return haveIds;
+  }
+
+  var Banner = {
+    init: function init() {
+      log.debug = true; // set to false before publishing
+
+      var dom = domIds();
+      var elements = ['#img-01', '#img-02', '#img-03'];
+      var positions = ['first', 'second', 'third']; ////////////////////////////////////////////////////// ANIMATION //////////////////////////////////////////////////////
+
+      function frameStart() {
+        if (es5()) {
+          frame0();
+        } else {
+          dom.backup.classList.add('backup');
+        }
+      }
+
+      function setPosition(img, posFrom, posTo) {
+        TweenMax.set(img, {
+          className: "-=" + posFrom
+        });
+        TweenMax.set(img, {
+          className: "+=" + posTo
+        });
+      }
+
+      function changeElement(img1, img2, img3) {
+        setPosition(img1, positions[0], positions[2]);
+        setPosition(img2, positions[1], positions[0]);
+        setPosition(img3, positions[2], positions[1]);
+      }
+
+      function changePosition() {
+        var duration = 0.5;
+        var tlPhotos = new TimelineMax({
+          repeat: 1,
+          repeatDelay: duration
+        });
+        tlPhotos.add('frame1').call(changeElement, [elements[0], elements[1], elements[2]], this, 'frame1').add('frame2', '+=' + duration).call(changeElement, [elements[1], elements[2], elements[0]], this, 'frame2').add('frame3', '+=' + duration).call(changeElement, [elements[2], elements[0], elements[1]], this, 'frame3');
+      }
+
+      function frame0() {
+        var tl = new TimelineMax({
+          onComplete: addRollover
+        });
+        dom.ad_content.classList.remove('invisible');
+        tl.add("start").call(changePosition).to('#frame', 4, {
+          backgroundPositionX: -20,
+          ease: Linear.easeNone
+        }, "start").from('#bg', 3.5, {
+          scale: 1.2
+        }, "start").to("#wraper", 0.4, {
+          y: 135
+        }, '-=1').staggerFrom(['#txt-01,#txt-02,#txt-03,#txt-04,#air,#logo,#airmax90'], 0.01, {
+          autoAlpha: 0
+        }, 0.1, '-=0.7') //.to('#bg',1,{scale:0.64, x:52, y:-54})
+        .from('#cta', 0.5, {
+          autoAlpha: 0
+        }, '+=0.7');
+      } ////////////////////////////////////////////////////// EVENT HANDLERS //////////////////////////////////////////////////////
+
+
+      function addRollover() {
+        dom.ad_content.addEventListener('mouseenter', function () {
+          TweenMax.to('#bg', 0.5, {
+            scale: 1.1
+          });
+        });
+        dom.ad_content.addEventListener('mouseleave', function () {
+          TweenMax.to('#bg', 0.5, {
+            scale: 1
+          });
+        });
+      }
+
+      function adClickThru() {
+        dom.ad_content.addEventListener('click', function () {
+          window.open(window.clickTag || window.clickTAG);
+        });
+      } ////////////////////////////////////////////////////// INIT //////////////////////////////////////////////////////
+
+
+      adClickThru();
+      frameStart();
+    }
+  };
+
+  window.onload = function () {
+    window.requestAnimationFrame(Banner.init);
+  };
+
+}());
